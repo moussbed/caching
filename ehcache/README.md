@@ -1,47 +1,17 @@
-# Caching 
-
- ## 1- Definition
-
-Caching is a technique that involves the intermediate storage of data in very fast memory, usually. 
-This means that this data can be made available much more quickly for subsequent requests 
-since it does not have to be retrieved or recalculated from the primary and usually slower memory first.
-
-Caching is particularly useful for the following scenarios:
-  - The same data is requested again and again (so-called hot spots), which have to be loaded from the database anew with each request. This data can be cached in the main memory of the server application (RAM) or on the client (browser cache). These reduces access times and the number of data transfers since the server does not have to repeatedly request data from the database and send it to the client. 
-  - Long-term or resource-intensive operations are often performed with specific parameters. Depending on the parameters, the result of the operation can be stored temporarily so that the server can send the result to the client without executing the operation.
-
-## 2- Caching in Spring
-Thanks to the implementation of JSR-107, some cache providers are fully compatible with the javax.cache API. Due to this compatibility, integration into Spring or Hibernate is very easy.
-
-In Spring or Spring Boot it is very easy to add caching to an application. All you need to do is activate caching support via Annotation ***@EnableCaching***. As we are used to from Spring Boot, the entire caching infrastructure is configured for us.
-
-Springs Caching Service is an abstraction and not an implementation. Therefore it is necessary to use a cache provider or cache implementation for caching. Spring supports a wide range of cache providers:
-  - Ehcache 3 
-  - Hazelcast
-  - Infinispan
-  - Couchbase
-  - Redis 
-
-A change of the cache provider has no effect on the existing code, as the developer only gets in touch with the abstract concepts.
-
-If no cache provider is added, Spring Boot configures a very simple provider that caches in main memory using maps. This is sufficient for testing, but for applications in production, you should choose one of the above cache providers.
-
-In this exchange we will use EhCache 3 and Hazelcast cache provider.
-
-### 2-1 EhCache 
+### 1- EhCache 
 Ehcache is an open source, standards-based cache that boosts performance, offloads your database, and simplifies scalability. It's the most widely-used Java-based cache because it's robust, proven, full-featured, and integrates with other popular libraries and frameworks.
 
-#### 2-1-1  Ehcache Caching Tiers
+#### 1-1  Ehcache Caching Tiers
 The memory areas supported by Ehcache include:
   - **On-Heap Store**: Uses the Java heap memory to store cache entries and shares the memory with the application. The cache is also scanned by the garbage collection. This memory is very fast, but also very limited.
   - **Off-Heap Store**: Uses the RAM to store cache entries. This memory is not subject to garbage collection. Still quite fast memory, but slower than the on-heap memory, because the cache entries have to be moved to the on-heap memory before they can be used.
   - **Disk Store**: Uses the hard disk to store cache entries. Much slower than RAM. It is recommended to use a dedicated SSD that is only used for caching.
 
-#### 2-1-2  Ehcache Demo
+#### 1-2  Ehcache Demo
 
 In our demo project, we will use a three-tier cache with a disk store as an authority tier.
 
-##### 2-1-2-1  Used Dependencies
+##### 1-2-1  Used Dependencies
 For the Ehcache demo project we need the following dependencies in our Spring Boot based application:
 ```xml
 <dependency>
@@ -64,7 +34,7 @@ For the Ehcache demo project we need the following dependencies in our Spring Bo
 ```
 For caching we need spring-boot-starter-cache and cache-api dependency as well as the dependency ehcache as a cache provider.
 
-##### 2-1-2-2  Enable Caching
+##### 1-2-2  Enable Caching
 To enable caching support in Spring Boot, we need a simple configuration class that must be annotated with @EnableCaching.
 
 ```java
@@ -74,7 +44,7 @@ public class EhcacheConfig {
 }
 ```
 
-##### 2-1-2-3  Ehcache Cache Configuration
+##### 1-2-3  Ehcache Cache Configuration
 Now the configuration of the Ehcache cache has to be done. The configuration is XML-based. We create the XML file ehcache.xml in the resource folder of our application.
 - Cache Template
 
@@ -170,7 +140,7 @@ In the **resources tag**, we configure the tiers and capacities of our cache. We
 ```
 
 
-##### 2-1-2-4  Caching Operations
+##### 1-2-4  Caching Operations
 
 - @Cacheable
 
