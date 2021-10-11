@@ -4,7 +4,9 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.internal.util.SetUtil;
 import com.hazelcast.map.IMap;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -39,7 +41,6 @@ public class MemberHazelcast {
 
         cache.remove(1);
         cache.remove(2);
-
         final Map<Integer, Person> personMap = cache.getAll(new HashSet<>(Arrays.asList(3, 4)));
         personMap.forEach((integer, pers) -> System.out.println("person1 = " + pers));
 

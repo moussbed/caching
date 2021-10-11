@@ -15,8 +15,6 @@
     <description>Ehcache</description>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
         <exec.mainClass>com.mb.caching.hazelcast.MemberHazelcast</exec.mainClass>
     </properties>
     <dependencies>
@@ -29,6 +27,10 @@
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast-client</artifactId>
             <version>3.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
     </dependencies>
 
