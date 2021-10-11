@@ -1,4 +1,4 @@
-package test.java.com.mb.caching;
+package com.mb.caching.ehcache;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

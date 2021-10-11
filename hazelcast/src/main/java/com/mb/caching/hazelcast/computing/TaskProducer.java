@@ -17,7 +17,6 @@ public class TaskProducer {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         final HazelcastInstance hazelcastInstance = HazelcastClient.newHazelcastClient();
         final IMap<Integer, Integer> inputMap = hazelcastInstance.getMap("inputMap");
-        inputMap.removeAll((item)-> true);
 
         // Producer: Generate Data in cache
         for (int i=0; i<=20000; i++){

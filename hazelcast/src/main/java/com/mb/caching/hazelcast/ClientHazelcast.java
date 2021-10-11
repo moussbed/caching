@@ -15,10 +15,10 @@ public class ClientHazelcast {
     public static void main(String[] args) {
         final ClientConfig clientConfig = new ClientConfig();
         final HazelcastInstance hazelcastInstance = HazelcastClient.newHazelcastClient(clientConfig);
-        final IMap<Integer, String> clients = hazelcastInstance.getMap("clients");
+        final IMap<Integer, String> clients = hazelcastInstance.getMap("input");
 
-        LOGGER.log(Level.INFO," Client 4 => "+ clients.get(4));
-        LOGGER.log(Level.INFO," Map size => " + clients.size() );
+        LOGGER.log(Level.INFO," Client 4 => "+ clients.get(1));
+        LOGGER.log(Level.INFO," Map size => " + clients.size());
 
     }
 }

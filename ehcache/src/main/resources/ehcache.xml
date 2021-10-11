@@ -33,7 +33,7 @@
         <key-type>java.lang.Integer</key-type>
         <value-type>java.lang.Double</value-type>
     </cache>
-    <!--<cache alias="multiplyCache" uses-template="default">
+    <cache alias="multiplyCache" uses-template="default">
         <key-type>java.lang.String</key-type>
         <value-type>java.lang.Double</value-type>
     </cache>
@@ -41,5 +41,4 @@
         <key-type>java.lang.Long</key-type>
         <value-type>com.mb.caching.ehcache.model.Student</value-type>
     </cache>
--->
 </config>

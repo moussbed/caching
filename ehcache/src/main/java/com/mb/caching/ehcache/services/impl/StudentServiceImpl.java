@@ -5,12 +5,14 @@ import com.mb.caching.ehcache.repository.StudentRepository;
 import com.mb.caching.ehcache.services.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 
 @Service
-//@CacheConfig(cacheNames = "studentCache")
+@CacheConfig(cacheNames = "studentCache")
 @RequiredArgsConstructor
 @Slf4j
 public class StudentServiceImpl implements StudentService {
@@ -25,7 +27,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    //@CachePut(key = "#result.id")
+    @CachePut (key = "#result.id")
     public Student create(Student student) {
         log.info("Creating student with firstName={}, lastName={} and courseOfStudies={}",
                 student.getFirstName(),student.getLastName(), student.getCourseOfStudies());
